@@ -9,7 +9,7 @@
 
 int main(){
 
-    ascii_screen screen(150, 70);
+    ascii_screen screen(100, 50);
 
     screen.show_start_menu();
     while (true){
