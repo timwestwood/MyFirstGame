@@ -4,3 +4,6 @@ Running `setup.exe` in the `install/` directory will automate the installation o
 
 ## From the source code
 The game can be simply built from the source code by creating a Visual Studio project from it or by manually invoking a compiler in a Cygwin terminal -- e.g. `g++ *.cpp -O3 -o game && ./game` -- as long as the appropriate Windows SDK is installed.
+
+# Acknowledgement
+As distributed, this game uses the 'Open Sans' font found at https://www.fontsquirrel.com/fonts/open-sans. The license is included in the source code and can also be found at https://www.fontsquirrel.com/license/open-sans.
