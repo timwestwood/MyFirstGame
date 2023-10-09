@@ -1,7 +1,6 @@
 #ifndef MY_OPENGL_SCREEN_HEADER_7_OCT_2023
 #define MY_OPENGL_SCREEN_HEADER_7_OCT_2023
 
-#include <Windows.h>
 #include <GL/glew.h> // Apparently it's important that this one is included first out of the OpenGL headers.
 #include <GLFW/glfw3.h>
 #include <FTGL/ftgl.h>

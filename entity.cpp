@@ -1,5 +1,4 @@
 #include "entity.hpp"
-#include <algorithm>
 
 entity::~entity(){}
 

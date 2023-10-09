@@ -28,7 +28,7 @@ opengl_screen::opengl_screen(const int width_in, const int height_in, const char
     height = height_in;
 
     glfwInit();
-    glewExperimental = TRUE;
+    glewExperimental = true;
     glewInit();
 
     window = glfwCreateWindow(width, height, title, NULL, NULL);
