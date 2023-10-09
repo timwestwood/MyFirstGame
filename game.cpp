@@ -3,7 +3,6 @@
 #include <chrono>
 #include <cmath>
 #include <fstream>
-#include <iostream>
 
 #define BEST_SCORE_FILE_NAME ".my_best_score"
 
