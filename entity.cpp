@@ -3,14 +3,16 @@
 
 entity::~entity(){}
 
-entity::entity(const float x_in, const float y_in, const float speed_in, const int x_size_in, const int y_size_in, const char sprite_char_in){
+entity::entity(const float x_in, const float y_in, const float speed_in, const int x_size_in, const int y_size_in, const float r_in, const float g_in, const float b_in){
 
     x_posn = x_in;
     y_posn = y_in;
     speed = speed_in;
     x_size = x_size_in;
     y_size = y_size_in;
-    sprite_char = sprite_char_in;
+    r = r_in;
+    g = g_in;
+    b = b_in;
 
 }
 
@@ -57,14 +59,14 @@ bool sprites_overlap(const entity& e1, const entity& e2){
     // so we check for overlap in y-coordinates.
     if (e1y <= e2y){
 
-        // e1 is "below" e2 (i.e. it has a smaller y-coordinate, but that actually puts it higher on the console display)
+        // e1 is below e2
         if (e2y >= e1y + e1.y_size){
             return false;
         }
 
     } else {
 
-        // e2 is "below" e1
+        // e2 is below e1
         if (e1y >= e2y + e2.y_size){
             return false;
         }

@@ -7,13 +7,15 @@ class entity{
 
         float x_posn;
         float y_posn;
-        float speed; // in characters per second
-        int x_size; // in characters
-        int y_size; // in characters
-        char sprite_char;
+        float speed; // in pixels per second
+        int x_size; // in pixels
+        int y_size; // in pixels
+        float r;
+        float g;
+        float b;
 
         ~entity();
-        entity(const float x_in, const float y_in, const float speed_in, const int x_size_in, const int y_size_in, const char sprite_char_in);
+        entity(const float x_in, const float y_in, const float speed_in, const int x_size_in, const int y_size_in, const float r_in, const float g_in, const float b_in);
         void update_position(const float x_time_interval, const float y_time_interval);
 
 };

@@ -1,19 +1,19 @@
-#include "input.hpp"
-#include "ascii_screen.hpp"
+#include "opengl_screen.hpp"
 #include "entity.hpp"
 #include <chrono>
 #include <cmath>
 #include <fstream>
+#include <iostream>
 
 #define BEST_SCORE_FILE_NAME ".my_best_score"
 
 int main(){
 
-    ascii_screen screen(100, 50);
+    opengl_screen screen(1000, 500, "My First Game");
 
     screen.show_start_menu();
     while (true){
-        if (r_key_is_down()){ // Press [R] to start the game.
+        if (screen.r_key_is_down()){ // Press [R] to start the game.
             break;
         }
     }
@@ -22,14 +22,14 @@ int main(){
 
     do {
 
-        entity player(0, 0, 20, 5, 5, '@');
+        entity player(0, 0, 200.0f, 50, 50, 0.5f, 0.5f, 0.5f);
         screen.confine_entity(player);
 
-        entity target(0, 0, 0, 2, 2, '#');
+        entity target(0, 0, 0.0f, 20, 20, 0.0f, 1.0f, 0.0f);
         screen.confine_entity(target);
         place_on_screen_without_overlap(target, player, screen);
 
-        entity enemy(0, 0, 10, 5, 5, 'M');
+        entity enemy(0, 0, 100.0f, 50, 50, 1.0f, 0.0f, 0.0f);
         screen.confine_entity(enemy);
         place_on_screen_without_overlap(enemy, player, screen);
 
@@ -59,17 +59,17 @@ int main(){
 
             // Check if we're being asked to move the player.
             float x_shift = 0, y_shift = 0;
-            if (left_arrow_key_is_down()){
+            if (screen.left_arrow_key_is_down()){
                 x_shift -= 1;
             }
-            if (right_arrow_key_is_down()){
+            if (screen.right_arrow_key_is_down()){
                 x_shift += 1;
             }
-            if (up_arrow_key_is_down()){
-                y_shift -= 1; // The coordinates are (0,0) at the top left corner of the terminal and the y-coordinate increases downwards.
-            }
-            if (down_arrow_key_is_down()){
+            if (screen.up_arrow_key_is_down()){
                 y_shift += 1;
+            }
+            if (screen.down_arrow_key_is_down()){
+                y_shift -= 1;
             }
 
             // We don't want to move faster diagonally...
@@ -109,11 +109,11 @@ int main(){
 
                 while (true){
 
-                    if (escape_key_is_down()){
+                    if (screen.escape_key_is_down()){
                         running = false;
                         retry = false;
                         break;
-                    } else if (r_key_is_down()){
+                    } else if (screen.r_key_is_down()){
                         retry = true;
                         break;
                     }
@@ -133,19 +133,19 @@ int main(){
             screen.display();
 
             // Check if we should pause the game.
-            if (escape_key_is_down()){
+            if (screen.escape_key_is_down()){
 
                 screen.show_pause_menu();
 
-                while (escape_key_is_down()){} // Don't try to detect the in-menu keystrokes until [Esc] has been released or we'll instantly close the game.
+                while (screen.escape_key_is_down()){} // Don't try to detect the in-menu keystrokes until [Esc] has been released or we'll instantly close the game.
 
                 while (true){
 
-                    if (escape_key_is_down()){
+                    if (screen.escape_key_is_down()){
                         running = false;
                         retry = false;
                         break;
-                    } else if (r_key_is_down()){
+                    } else if (screen.r_key_is_down()){
                         time1 = std::chrono::steady_clock::now(); // Otherwise the enemy is effectively moving while the game is "paused".
                         break;
                     }
